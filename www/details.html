@@ -98,7 +98,7 @@
     $(document).ready(function () {
         qs();
         $.ajax({
-            url: 'http://61.0.225.169/VPMSApi/api/VisitPass/GetVisitorPassDetails/' + $("#hidreqid").val(),
+            url: 'http://172.168.8.151/VPMSApi/api/VisitPass/GetVisitorPassDetails/' + $("#hidreqid").val(),
             type: 'GET',
             data: '{}',
             dataType: 'json',
@@ -111,13 +111,15 @@
                     $("#spnvisitortype").text(result[0].VisitorType);
                     $("#spnmeet").text(result[0].WhomToMeet);
                     $("#spndesc").text(result[0].LuggageDesc);
-                    $("#imgvisitor").attr('src', 'http://61.0.225.169/VPMSAPI/Upload/20160916/100105810.jpg');
+                    $("#imgvisitor").attr('src', 'http://appserver/VPMS/' + result[0].PhotoUrl + '/' + result[0].PhotoName);
                 }
                 else {
+                    $("#imgvisitor").attr('src', 'img/noimage.jpg');
                     alert('No data found.');
                 }
             },
             error: function () {
+                $("#imgvisitor").attr('src', 'img/noimage.jpg');
                 alert('Error occurred while Visitor Pass Details.');
             }
         });
