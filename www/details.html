@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Details</title>
+        <meta name="viewport" content="user-scalable=yes, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+        <link href="css/index.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Ubuntu'>
+    </head>
+    <body>
+        <div class="topbar text-center">
+            <img alt="KPCL" src="img/headerlogobar.png">
+        </div>
+        <div class="container">
+            <form class="form-horizontal" style="background-color: #f5f5f5; padding: 7px;">
+                <div class="form-group">
+                    <div class="col-lg-12">
+                        <table class="mytable">
+                            <tr>
+                                <td style="width: 30%;" rowspan="4" class="text-center" valign="top">
+                                    <img alt="visitor" src="" width="100px" height="250px" class="img-thumbnail" id="imgvisitor">
+                                </td>
+                                <td style="width: 70%; padding-left: 7px;">
+                                    <label id="lblname" style="font-size: 16px;"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 70%; padding-left: 7px;">
+                                    <label id="lblmobile"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 70%; padding-left: 7px;">
+                                    <label id="lblemail"></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 70%; padding-left: 7px;">
+                                    <label></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100%; border-bottom: 1px solid #e1e1e1" colspan="2"></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="form-group-sm">
+                    <table class="mytable text-left">
+                        <tr class="inputtext-tr">
+                            <td style="width: 30%;" class="inputtext-td"><span class="datalabel">Valid Till</span></td>
+                            <td style="width: 2%;" class="inputtext-td"><span> : </span></td>
+                            <td style="width: 68%;" class="inputtext-td"><span id="spnvalidity"></span></td>
+                        </tr>
+                        <tr class="inputtext-tr">
+                            <td style="width: 30%;" class="inputtext-td"><span class="datalabel">Visitor Type</span></td>
+                            <td style="width: 2%;" class="inputtext-td"><span> : </span></td>
+                            <td style="width: 68%;" class="inputtext-td"><span id="spnvisitortype"></span></td>
+                        </tr>
+                        <tr class="inputtext-tr">
+                            <td style="width: 30%;" class="inputtext-td"><span class="datalabel">Whom to Meet</span></td>
+                            <td style="width: 2%;" class="inputtext-td"><span> : </span></td>
+                            <td style="width: 68%;" class="inputtext-td"><span id="spnmeet"></span></td>
+                        </tr>
+                        <tr class="inputtext-tr">
+                            <td style="width: 30%;" class="inputtext-td"><span class="datalabel">Description</span></td>
+                            <td style="width: 2%;" class="inputtext-td"><span> : </span></td>
+                            <td style="width: 68%;" class="inputtext-td"><span id="spndesc"></span></td>
+                        </tr>
+                    </table>
+                </div>
+            </form>
+        </div>
+        <input type="hidden" id="hidreqid">
+    </body>
+</html>
+<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+<script type="text/javascript">
+    var qsParm = new Array();
+    function qs() {
+        var query = window.location.search.substring(1);
+        var parms = query.split('&');
+        for (var i = 0; i < parms.length; i++) {
+            var pos = parms[i].indexOf('=');
+            if (pos > 0) {
+                var key = parms[i].substring(0, pos);
+                var val = parms[i].substring(pos + 1);
+                qsParm[key] = val;
+            }
+        }
+
+        if (parms.length > 0) {
+            $("#hidreqid").val(qsParm["id"]);
+        }
+    }
+    $(document).ready(function () {
+        //$('.menu-link').bigSlide();
+        qs();
+        $.ajax({
+            url: 'http://61.0.225.169/VPMSApi/api/VisitPass/GetVisitorPassDetails/' + $("#hidreqid").val(),
+            type: 'GET',
+            data: '{}',
+            dataType: 'json',
+            success: function (result) {
+                if (result.length > 0) {
+                    $("#lblname").text(result[0].FirstName + " " + result[0].LastName);
+                    //$("#lblemail").text(result[0].Email);
+                    $("#lblmobile").text(result[0].MobileNo);
+                    $("#spnvalidity").text(result[0].ToDate);
+                    $("#spnvisitortype").text(result[0].VisitorType);
+                    $("#spnmeet").text(result[0].WhomToMeet);
+                    $("#spndesc").text(result[0].LuggageDesc);
+                    $("#imgvisitor").attr('src', 'http://61.0.225.169/VPMSAPI/Upload/20160916/100105810.jpg');
+                }
+                else {
+                    alert('No data found.');
+                }
+            },
+            error: function () {
+                alert('Error occurred while Visitor Pass Details.');
+            }
+        });
+    });
+</script>
