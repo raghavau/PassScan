@@ -1,6 +1,6 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.kpcl.visitorscan" version="1.0">
-  <name>Visitor Scan</name>
-  <description>Visitor Scan is a mobile app to scan using qr code to display visitor details. It is developed for Krishnapatnam Port Company Ltd</description>
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.kpcl.passscan" version="1.0">
+  <name>Pass Scan</name>
+  <description>Visitor Pass Scan is a mobile app to scan using qr code to display visitor details. It is developed for Krishnapatnam Port Company Ltd</description>
   <author href="http://www.krishnapatnamport.com" email="epms_support@krishnapatnamport.com">Krishnapatnam Port Company LTD.</author>
   <content src="scan.html"/>
   <preference name="permissions" value="none"/>
