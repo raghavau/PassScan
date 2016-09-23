@@ -111,7 +111,7 @@
                     $("#spnvisitortype").text(result[0].VisitorType);
                     $("#spnmeet").text(result[0].WhomToMeet);
                     $("#spndesc").text(result[0].LuggageDesc);
-                    $("#imgvisitor").attr('src', 'http://appserver/VPMS/' + result[0].PhotoUrl + '/' + result[0].PhotoName);
+                    $("#imgvisitor").attr('src', 'http://172.168.0.45/VPMS/' + result[0].PhotoUrl + '/' + result[0].PhotoName);
                 }
                 else {
                     $("#imgvisitor").attr('src', 'img/noimage.jpg');
