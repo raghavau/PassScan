@@ -119,12 +119,13 @@
                     $("#imgvisitor").attr('src', 'img/noimage.jpg');
                     alert('No data found.');
                 }
+                $("#loading").hide();
             },
             error: function () {
                 $("#imgvisitor").attr('src', 'img/noimage.jpg');
                 alert('Error occurred while Visitor Pass Details.');
+                $("#loading").hide();
             }
         });
-        $("#loading").hide();
     });
 </script>
