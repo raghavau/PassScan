@@ -97,6 +97,7 @@
     }
     $(document).ready(function () {
         qs();
+        $("#loading").show();
         $.ajax({
             url: 'http://61.0.225.169/VPMSApi/api/VisitPass/GetVisitorPassDetails/' + $("#hidreqid").val(),
             type: 'GET',
