@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.kpcl.passscan" version="1.0">
     <name>Visitor Pass Scan</name>
     <description>Visitor Pass Scan is a mobile app to scan using qr code to display visitor details. It is developed for Krishnapatnam Port Company Ltd</description>
